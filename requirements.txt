@@ -1,0 +1,10 @@
+xm requirements
+
+
+python -m pip requests
+pip install flask_web_log
+pip install robotframework
+pip install --upgrade robotframework-seleniumlibrary
+pip install selenium robotframework-selenium2library webdrivermanager
+chromdriver is under C:\Program Files\Python311
+pip install robotframework-requests

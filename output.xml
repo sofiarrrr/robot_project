@@ -1,0 +1,726 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.0.2 (Python 3.11.0 on win32)" generated="20230407 11:38:16.460" rpa="false" schemaversion="3">
+<suite id="s1" name="xmRobotTest7" source="C:\Users\rousou\new_project_XM\xmRobotTest7.robot">
+<test id="s1-t1" name="Start Http Server" line="88">
+<kw name="Start Process" library="Process">
+<arg>python</arg>
+<arg>functional.py</arg>
+<doc>Starts a new process on background.</doc>
+<msg timestamp="20230407 11:38:16.718" level="INFO">Starting process:
+python functional.py</msg>
+<status status="PASS" starttime="20230407 11:38:16.718" endtime="20230407 11:38:16.725"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>10s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20230407 11:38:26.727" level="INFO">Slept 10 seconds</msg>
+<status status="PASS" starttime="20230407 11:38:16.726" endtime="20230407 11:38:26.727"/>
+</kw>
+<status status="PASS" starttime="20230407 11:38:16.710" endtime="20230407 11:38:26.727"/>
+</test>
+<test id="s1-t2" name="Open the Browser test" line="92">
+<kw name="Open the browser">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${HOMEPAGE}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20230407 11:38:26.729" level="INFO">Opening browser 'headlesschrome' to base url 'http://127.0.0.1:81'.</msg>
+<status status="PASS" starttime="20230407 11:38:26.729" endtime="20230407 11:38:28.495"/>
+</kw>
+<status status="PASS" starttime="20230407 11:38:26.728" endtime="20230407 11:38:28.495"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20230407 11:38:30.496" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20230407 11:38:28.495" endtime="20230407 11:38:30.496"/>
+</kw>
+<status status="PASS" starttime="20230407 11:38:26.728" endtime="20230407 11:38:30.497"/>
+</test>
+<test id="s1-t3" name="Performance test" line="96">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>get_star_wars</arg>
+<arg>${HOMEPAGE}</arg>
+<arg>verify=True</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230407 11:38:30.506" level="INFO">Creating Session using : alias=get_star_wars, url=http://127.0.0.1:81, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=True,                     debug=0 </msg>
+<status status="PASS" starttime="20230407 11:38:30.503" endtime="20230407 11:38:30.506"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${iterations}</var>
+<arg>2</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230407 11:38:30.508" level="INFO">${iterations} = 2</msg>
+<status status="PASS" starttime="20230407 11:38:30.506" endtime="20230407 11:38:30.508"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${iterations}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<msg timestamp="20230407 11:38:30.509" level="INFO">${iterations} = 2</msg>
+<status status="PASS" starttime="20230407 11:38:30.508" endtime="20230407 11:38:30.509"/>
+</kw>
+<for flavor="IN RANGE">
+<var>${i}</var>
+<value>${iterations}</value>
+<iter>
+<var name="${i}">0</var>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>get_star_wars</arg>
+<arg>api/planets/3/</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20230407 11:38:30.781" level="INFO">GET Request : url=http://127.0.0.1:81/api/planets/3/ 
+ path_url=/api/planets/3/ 
+ headers={'User-Agent': 'python-requests/2.28.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20230407 11:38:30.781" level="INFO">GET Response : url=http://127.0.0.1:81/api/planets/3/ 
+ status=200, reason=OK 
+ headers={'Server': 'Werkzeug/2.2.3 Python/3.11.0', 'Date': 'Fri, 07 Apr 2023 08:38:30 GMT', 'Content-Type': 'application/json', 'Content-Length': '92', 'Connection': 'close'} 
+ body={
+  "date": "Fri, 07 Apr 2023 11:38:30 GMT",
+  "greeting": [
+    "hello",
+    "world"
+  ]
+}
+ 
+ </msg>
+<msg timestamp="20230407 11:38:30.782" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230407 11:38:30.510" endtime="20230407 11:38:30.782"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${time}</var>
+<arg>${response.elapsed}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230407 11:38:30.782" level="INFO">${time} = 0:00:00.263190</msg>
+<status status="PASS" starttime="20230407 11:38:30.782" endtime="20230407 11:38:30.783"/>
+</kw>
+<kw name="Append To List" library="Collections">
+<arg>${RESPONSE_TIME_LIST}</arg>
+<arg>${time}</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<status status="PASS" starttime="20230407 11:38:30.783" endtime="20230407 11:38:30.783"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${response}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230407 11:38:30.783" level="INFO">&lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230407 11:38:30.783" endtime="20230407 11:38:30.784"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${RESPONSE_TIME_LIST}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230407 11:38:30.784" level="INFO">[datetime.timedelta(microseconds=263190)]</msg>
+<status status="PASS" starttime="20230407 11:38:30.784" endtime="20230407 11:38:30.784"/>
+</kw>
+<status status="PASS" starttime="20230407 11:38:30.510" endtime="20230407 11:38:30.784"/>
+</iter>
+<iter>
+<var name="${i}">1</var>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>get_star_wars</arg>
+<arg>api/planets/3/</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20230407 11:38:31.173" level="INFO">GET Request : url=http://127.0.0.1:81/api/planets/3/ 
+ path_url=/api/planets/3/ 
+ headers={'User-Agent': 'python-requests/2.28.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20230407 11:38:31.174" level="INFO">GET Response : url=http://127.0.0.1:81/api/planets/3/ 
+ status=200, reason=OK 
+ headers={'Server': 'Werkzeug/2.2.3 Python/3.11.0', 'Date': 'Fri, 07 Apr 2023 08:38:31 GMT', 'Content-Type': 'application/json', 'Content-Length': '92', 'Connection': 'close'} 
+ body={
+  "date": "Fri, 07 Apr 2023 11:38:31 GMT",
+  "greeting": [
+    "hello",
+    "world"
+  ]
+}
+ 
+ </msg>
+<msg timestamp="20230407 11:38:31.174" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230407 11:38:30.784" endtime="20230407 11:38:31.174"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${time}</var>
+<arg>${response.elapsed}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230407 11:38:31.178" level="INFO">${time} = 0:00:00.387010</msg>
+<status status="PASS" starttime="20230407 11:38:31.175" endtime="20230407 11:38:31.178"/>
+</kw>
+<kw name="Append To List" library="Collections">
+<arg>${RESPONSE_TIME_LIST}</arg>
+<arg>${time}</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<status status="PASS" starttime="20230407 11:38:31.179" endtime="20230407 11:38:31.181"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${response}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230407 11:38:31.183" level="INFO">&lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230407 11:38:31.181" endtime="20230407 11:38:31.183"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${RESPONSE_TIME_LIST}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230407 11:38:31.185" level="INFO">[datetime.timedelta(microseconds=263190), datetime.timedelta(microseconds=387010)]</msg>
+<status status="PASS" starttime="20230407 11:38:31.183" endtime="20230407 11:38:31.185"/>
+</kw>
+<status status="PASS" starttime="20230407 11:38:30.784" endtime="20230407 11:38:31.185"/>
+</iter>
+<status status="PASS" starttime="20230407 11:38:30.510" endtime="20230407 11:38:31.185"/>
+</for>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${RESPONSE_TIME_LIST}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<msg timestamp="20230407 11:38:31.188" level="INFO">${RESPONSE_TIME_LIST} = [datetime.timedelta(microseconds=263190), datetime.timedelta(microseconds=387010)]</msg>
+<status status="PASS" starttime="20230407 11:38:31.187" endtime="20230407 11:38:31.188"/>
+</kw>
+<kw name="Check Status Code">
+<arg>${response}</arg>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20230407 11:38:31.194" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20230407 11:38:31.190" endtime="20230407 11:38:31.194"/>
+</kw>
+<status status="PASS" starttime="20230407 11:38:31.189" endtime="20230407 11:38:31.194"/>
+</kw>
+<timeout value="2 minutes"/>
+<status status="PASS" starttime="20230407 11:38:30.502" endtime="20230407 11:38:31.195"/>
+</test>
+<test id="s1-t4" name="Stop Http Server" line="112">
+<kw name="Terminate All Processes" library="Process">
+<doc>Terminates all still running processes started by this library.</doc>
+<msg timestamp="20230407 11:38:31.201" level="INFO">Gracefully terminating process.</msg>
+<msg timestamp="20230407 11:38:31.307" level="INFO">Process completed.</msg>
+<status status="PASS" starttime="20230407 11:38:31.201" endtime="20230407 11:38:31.308"/>
+</kw>
+<status status="PASS" starttime="20230407 11:38:31.199" endtime="20230407 11:38:31.310"/>
+</test>
+<test id="s1-t5" name="Find Deviation Time Values" line="115">
+<kw name="Mean Deviation Time">
+<arg>${RESPONSE_TIME_LIST}</arg>
+<kw name="Set Variable" library="BuiltIn">
+<var>${mysum}</var>
+<arg>0</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230407 11:38:31.322" level="INFO">${mysum} = 0</msg>
+<status status="PASS" starttime="20230407 11:38:31.322" endtime="20230407 11:38:31.322"/>
+</kw>
+<kw name="Distance from Mean">
+<var>${distance_mean_LIST}</var>
+<arg>${RESPONSE_TIME_LIST}</arg>
+<kw name="Set Variable" library="BuiltIn">
+<var>${mysum}</var>
+<arg>0</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230407 11:38:31.326" level="INFO">${mysum} = 0</msg>
+<status status="PASS" starttime="20230407 11:38:31.322" endtime="20230407 11:38:31.326"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${mysub}</var>
+<arg>0</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230407 11:38:31.328" level="INFO">${mysub} = 0</msg>
+<status status="PASS" starttime="20230407 11:38:31.327" endtime="20230407 11:38:31.328"/>
+</kw>
+<kw name="Create List" library="BuiltIn">
+<var>@{distance_mean_LIST}</var>
+<doc>Returns a list containing given items.</doc>
+<msg timestamp="20230407 11:38:31.334" level="INFO">@{distance_mean_LIST} = [ ]</msg>
+<status status="PASS" starttime="20230407 11:38:31.328" endtime="20230407 11:38:31.334"/>
+</kw>
+<for flavor="IN RANGE">
+<var>${i}</var>
+<value>${iterations}</value>
+<iter>
+<var name="${i}">0</var>
+<kw name="Convert Time" library="DateTime">
+<var>${timedelta}</var>
+<arg>${RESPONSE_TIME_LIST}[${i}]</arg>
+<arg>timedelta</arg>
+<doc>Converts between supported `time formats`.</doc>
+<msg timestamp="20230407 11:38:31.337" level="INFO">${timedelta} = 0:00:00.263190</msg>
+<status status="PASS" starttime="20230407 11:38:31.335" endtime="20230407 11:38:31.337"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${var}</var>
+<arg>${timedelta.total_seconds()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230407 11:38:31.341" level="INFO">${var} = 0.26319</msg>
+<status status="PASS" starttime="20230407 11:38:31.337" endtime="20230407 11:38:31.341"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${mysum}</var>
+<arg>${mysum} + ${var}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20230407 11:38:31.342" level="INFO">${mysum} = 0.26319</msg>
+<status status="PASS" starttime="20230407 11:38:31.341" endtime="20230407 11:38:31.342"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${mysum}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230407 11:38:31.343" level="INFO">0.26319</msg>
+<status status="PASS" starttime="20230407 11:38:31.342" endtime="20230407 11:38:31.343"/>
+</kw>
+<status status="PASS" starttime="20230407 11:38:31.335" endtime="20230407 11:38:31.343"/>
+</iter>
+<iter>
+<var name="${i}">1</var>
+<kw name="Convert Time" library="DateTime">
+<var>${timedelta}</var>
+<arg>${RESPONSE_TIME_LIST}[${i}]</arg>
+<arg>timedelta</arg>
+<doc>Converts between supported `time formats`.</doc>
+<msg timestamp="20230407 11:38:31.345" level="INFO">${timedelta} = 0:00:00.387010</msg>
+<status status="PASS" starttime="20230407 11:38:31.343" endtime="20230407 11:38:31.345"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${var}</var>
+<arg>${timedelta.total_seconds()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230407 11:38:31.346" level="INFO">${var} = 0.38701</msg>
+<status status="PASS" starttime="20230407 11:38:31.345" endtime="20230407 11:38:31.346"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${mysum}</var>
+<arg>${mysum} + ${var}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20230407 11:38:31.348" level="INFO">${mysum} = 0.6502</msg>
+<status status="PASS" starttime="20230407 11:38:31.347" endtime="20230407 11:38:31.348"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${mysum}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230407 11:38:31.350" level="INFO">0.6502</msg>
+<status status="PASS" starttime="20230407 11:38:31.348" endtime="20230407 11:38:31.350"/>
+</kw>
+<status status="PASS" starttime="20230407 11:38:31.343" endtime="20230407 11:38:31.350"/>
+</iter>
+<status status="PASS" starttime="20230407 11:38:31.334" endtime="20230407 11:38:31.350"/>
+</for>
+<kw name="Evaluate" library="BuiltIn">
+<var>${mean_value}</var>
+<arg>${mysum}/${iterations}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20230407 11:38:31.352" level="INFO">${mean_value} = 0.3251</msg>
+<status status="PASS" starttime="20230407 11:38:31.350" endtime="20230407 11:38:31.352"/>
+</kw>
+<for flavor="IN RANGE">
+<var>${i}</var>
+<value>${iterations}</value>
+<iter>
+<var name="${i}">0</var>
+<kw name="Convert Time" library="DateTime">
+<var>${timedelta}</var>
+<arg>${RESPONSE_TIME_LIST}[${i}]</arg>
+<arg>timedelta</arg>
+<doc>Converts between supported `time formats`.</doc>
+<msg timestamp="20230407 11:38:31.354" level="INFO">${timedelta} = 0:00:00.263190</msg>
+<status status="PASS" starttime="20230407 11:38:31.353" endtime="20230407 11:38:31.354"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${var}</var>
+<arg>${timedelta.total_seconds()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230407 11:38:31.355" level="INFO">${var} = 0.26319</msg>
+<status status="PASS" starttime="20230407 11:38:31.354" endtime="20230407 11:38:31.355"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${mysub}</var>
+<arg>${var} - ${mean_value}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20230407 11:38:31.356" level="INFO">${mysub} = -0.06191000000000002</msg>
+<status status="PASS" starttime="20230407 11:38:31.355" endtime="20230407 11:38:31.356"/>
+</kw>
+<kw name="Append To List" library="Collections">
+<arg>${distance_mean_LIST}</arg>
+<arg>${mysub}</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<status status="PASS" starttime="20230407 11:38:31.357" endtime="20230407 11:38:31.358"/>
+</kw>
+<status status="PASS" starttime="20230407 11:38:31.353" endtime="20230407 11:38:31.358"/>
+</iter>
+<iter>
+<var name="${i}">1</var>
+<kw name="Convert Time" library="DateTime">
+<var>${timedelta}</var>
+<arg>${RESPONSE_TIME_LIST}[${i}]</arg>
+<arg>timedelta</arg>
+<doc>Converts between supported `time formats`.</doc>
+<msg timestamp="20230407 11:38:31.359" level="INFO">${timedelta} = 0:00:00.387010</msg>
+<status status="PASS" starttime="20230407 11:38:31.358" endtime="20230407 11:38:31.359"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${var}</var>
+<arg>${timedelta.total_seconds()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230407 11:38:31.360" level="INFO">${var} = 0.38701</msg>
+<status status="PASS" starttime="20230407 11:38:31.359" endtime="20230407 11:38:31.360"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${mysub}</var>
+<arg>${var} - ${mean_value}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20230407 11:38:31.361" level="INFO">${mysub} = 0.06191000000000002</msg>
+<status status="PASS" starttime="20230407 11:38:31.360" endtime="20230407 11:38:31.361"/>
+</kw>
+<kw name="Append To List" library="Collections">
+<arg>${distance_mean_LIST}</arg>
+<arg>${mysub}</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<status status="PASS" starttime="20230407 11:38:31.361" endtime="20230407 11:38:31.362"/>
+</kw>
+<status status="PASS" starttime="20230407 11:38:31.358" endtime="20230407 11:38:31.362"/>
+</iter>
+<status status="PASS" starttime="20230407 11:38:31.352" endtime="20230407 11:38:31.362"/>
+</for>
+<msg timestamp="20230407 11:38:31.362" level="INFO">${distance_mean_LIST} = [-0.06191000000000002, 0.06191000000000002]</msg>
+<timeout value="1 minute"/>
+<status status="PASS" starttime="20230407 11:38:31.322" endtime="20230407 11:38:31.362"/>
+</kw>
+<for flavor="IN RANGE">
+<var>${i}</var>
+<value>${iterations}</value>
+<iter>
+<var name="${i}">0</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${mysum}</var>
+<arg>${mysum} + ${distance_mean_LIST}[${i}]</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20230407 11:38:31.363" level="INFO">${mysum} = -0.06191000000000002</msg>
+<status status="PASS" starttime="20230407 11:38:31.363" endtime="20230407 11:38:31.363"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${mysum}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230407 11:38:31.363" level="INFO">-0.06191000000000002</msg>
+<status status="PASS" starttime="20230407 11:38:31.363" endtime="20230407 11:38:31.363"/>
+</kw>
+<status status="PASS" starttime="20230407 11:38:31.363" endtime="20230407 11:38:31.363"/>
+</iter>
+<iter>
+<var name="${i}">1</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${mysum}</var>
+<arg>${mysum} + ${distance_mean_LIST}[${i}]</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20230407 11:38:31.364" level="INFO">${mysum} = 0.0</msg>
+<status status="PASS" starttime="20230407 11:38:31.363" endtime="20230407 11:38:31.364"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${mysum}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230407 11:38:31.364" level="INFO">0.0</msg>
+<status status="PASS" starttime="20230407 11:38:31.364" endtime="20230407 11:38:31.364"/>
+</kw>
+<status status="PASS" starttime="20230407 11:38:31.363" endtime="20230407 11:38:31.364"/>
+</iter>
+<status status="PASS" starttime="20230407 11:38:31.362" endtime="20230407 11:38:31.364"/>
+</for>
+<kw name="Evaluate" library="BuiltIn">
+<var>${MEAN_DEVIATION_TIME}</var>
+<arg>${mysum}/${iterations}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20230407 11:38:31.364" level="INFO">${MEAN_DEVIATION_TIME} = 0.0</msg>
+<status status="PASS" starttime="20230407 11:38:31.364" endtime="20230407 11:38:31.364"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${mysum}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230407 11:38:31.365" level="INFO">0.0</msg>
+<status status="PASS" starttime="20230407 11:38:31.364" endtime="20230407 11:38:31.365"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${iterations}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230407 11:38:31.365" level="INFO">2</msg>
+<status status="PASS" starttime="20230407 11:38:31.365" endtime="20230407 11:38:31.365"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${MEAN_DEVIATION_TIME}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230407 11:38:31.365" level="INFO">0.0</msg>
+<status status="PASS" starttime="20230407 11:38:31.365" endtime="20230407 11:38:31.365"/>
+</kw>
+<status status="PASS" starttime="20230407 11:38:31.321" endtime="20230407 11:38:31.365"/>
+</kw>
+<kw name="Standard Deviation Time">
+<arg>${RESPONSE_TIME_LIST}</arg>
+<kw name="Set Variable" library="BuiltIn">
+<var>${mysum}</var>
+<arg>0</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230407 11:38:31.366" level="INFO">${mysum} = 0</msg>
+<status status="PASS" starttime="20230407 11:38:31.366" endtime="20230407 11:38:31.366"/>
+</kw>
+<kw name="Distance from Mean">
+<var>${distance_mean_LIST}</var>
+<arg>${RESPONSE_TIME_LIST}</arg>
+<kw name="Set Variable" library="BuiltIn">
+<var>${mysum}</var>
+<arg>0</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230407 11:38:31.367" level="INFO">${mysum} = 0</msg>
+<status status="PASS" starttime="20230407 11:38:31.367" endtime="20230407 11:38:31.367"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${mysub}</var>
+<arg>0</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230407 11:38:31.368" level="INFO">${mysub} = 0</msg>
+<status status="PASS" starttime="20230407 11:38:31.367" endtime="20230407 11:38:31.368"/>
+</kw>
+<kw name="Create List" library="BuiltIn">
+<var>@{distance_mean_LIST}</var>
+<doc>Returns a list containing given items.</doc>
+<msg timestamp="20230407 11:38:31.369" level="INFO">@{distance_mean_LIST} = [ ]</msg>
+<status status="PASS" starttime="20230407 11:38:31.368" endtime="20230407 11:38:31.369"/>
+</kw>
+<for flavor="IN RANGE">
+<var>${i}</var>
+<value>${iterations}</value>
+<iter>
+<var name="${i}">0</var>
+<kw name="Convert Time" library="DateTime">
+<var>${timedelta}</var>
+<arg>${RESPONSE_TIME_LIST}[${i}]</arg>
+<arg>timedelta</arg>
+<doc>Converts between supported `time formats`.</doc>
+<msg timestamp="20230407 11:38:31.370" level="INFO">${timedelta} = 0:00:00.263190</msg>
+<status status="PASS" starttime="20230407 11:38:31.369" endtime="20230407 11:38:31.370"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${var}</var>
+<arg>${timedelta.total_seconds()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230407 11:38:31.371" level="INFO">${var} = 0.26319</msg>
+<status status="PASS" starttime="20230407 11:38:31.370" endtime="20230407 11:38:31.371"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${mysum}</var>
+<arg>${mysum} + ${var}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20230407 11:38:31.371" level="INFO">${mysum} = 0.26319</msg>
+<status status="PASS" starttime="20230407 11:38:31.371" endtime="20230407 11:38:31.371"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${mysum}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230407 11:38:31.372" level="INFO">0.26319</msg>
+<status status="PASS" starttime="20230407 11:38:31.371" endtime="20230407 11:38:31.372"/>
+</kw>
+<status status="PASS" starttime="20230407 11:38:31.369" endtime="20230407 11:38:31.372"/>
+</iter>
+<iter>
+<var name="${i}">1</var>
+<kw name="Convert Time" library="DateTime">
+<var>${timedelta}</var>
+<arg>${RESPONSE_TIME_LIST}[${i}]</arg>
+<arg>timedelta</arg>
+<doc>Converts between supported `time formats`.</doc>
+<msg timestamp="20230407 11:38:31.372" level="INFO">${timedelta} = 0:00:00.387010</msg>
+<status status="PASS" starttime="20230407 11:38:31.372" endtime="20230407 11:38:31.373"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${var}</var>
+<arg>${timedelta.total_seconds()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230407 11:38:31.373" level="INFO">${var} = 0.38701</msg>
+<status status="PASS" starttime="20230407 11:38:31.373" endtime="20230407 11:38:31.373"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${mysum}</var>
+<arg>${mysum} + ${var}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20230407 11:38:31.374" level="INFO">${mysum} = 0.6502</msg>
+<status status="PASS" starttime="20230407 11:38:31.373" endtime="20230407 11:38:31.374"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${mysum}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230407 11:38:31.375" level="INFO">0.6502</msg>
+<status status="PASS" starttime="20230407 11:38:31.374" endtime="20230407 11:38:31.375"/>
+</kw>
+<status status="PASS" starttime="20230407 11:38:31.372" endtime="20230407 11:38:31.375"/>
+</iter>
+<status status="PASS" starttime="20230407 11:38:31.369" endtime="20230407 11:38:31.375"/>
+</for>
+<kw name="Evaluate" library="BuiltIn">
+<var>${mean_value}</var>
+<arg>${mysum}/${iterations}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20230407 11:38:31.375" level="INFO">${mean_value} = 0.3251</msg>
+<status status="PASS" starttime="20230407 11:38:31.375" endtime="20230407 11:38:31.375"/>
+</kw>
+<for flavor="IN RANGE">
+<var>${i}</var>
+<value>${iterations}</value>
+<iter>
+<var name="${i}">0</var>
+<kw name="Convert Time" library="DateTime">
+<var>${timedelta}</var>
+<arg>${RESPONSE_TIME_LIST}[${i}]</arg>
+<arg>timedelta</arg>
+<doc>Converts between supported `time formats`.</doc>
+<msg timestamp="20230407 11:38:31.377" level="INFO">${timedelta} = 0:00:00.263190</msg>
+<status status="PASS" starttime="20230407 11:38:31.376" endtime="20230407 11:38:31.377"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${var}</var>
+<arg>${timedelta.total_seconds()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230407 11:38:31.377" level="INFO">${var} = 0.26319</msg>
+<status status="PASS" starttime="20230407 11:38:31.377" endtime="20230407 11:38:31.377"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${mysub}</var>
+<arg>${var} - ${mean_value}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20230407 11:38:31.378" level="INFO">${mysub} = -0.06191000000000002</msg>
+<status status="PASS" starttime="20230407 11:38:31.378" endtime="20230407 11:38:31.378"/>
+</kw>
+<kw name="Append To List" library="Collections">
+<arg>${distance_mean_LIST}</arg>
+<arg>${mysub}</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<status status="PASS" starttime="20230407 11:38:31.378" endtime="20230407 11:38:31.379"/>
+</kw>
+<status status="PASS" starttime="20230407 11:38:31.376" endtime="20230407 11:38:31.379"/>
+</iter>
+<iter>
+<var name="${i}">1</var>
+<kw name="Convert Time" library="DateTime">
+<var>${timedelta}</var>
+<arg>${RESPONSE_TIME_LIST}[${i}]</arg>
+<arg>timedelta</arg>
+<doc>Converts between supported `time formats`.</doc>
+<msg timestamp="20230407 11:38:31.379" level="INFO">${timedelta} = 0:00:00.387010</msg>
+<status status="PASS" starttime="20230407 11:38:31.379" endtime="20230407 11:38:31.379"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${var}</var>
+<arg>${timedelta.total_seconds()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230407 11:38:31.380" level="INFO">${var} = 0.38701</msg>
+<status status="PASS" starttime="20230407 11:38:31.379" endtime="20230407 11:38:31.380"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${mysub}</var>
+<arg>${var} - ${mean_value}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20230407 11:38:31.381" level="INFO">${mysub} = 0.06191000000000002</msg>
+<status status="PASS" starttime="20230407 11:38:31.380" endtime="20230407 11:38:31.381"/>
+</kw>
+<kw name="Append To List" library="Collections">
+<arg>${distance_mean_LIST}</arg>
+<arg>${mysub}</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<status status="PASS" starttime="20230407 11:38:31.381" endtime="20230407 11:38:31.382"/>
+</kw>
+<status status="PASS" starttime="20230407 11:38:31.379" endtime="20230407 11:38:31.382"/>
+</iter>
+<status status="PASS" starttime="20230407 11:38:31.375" endtime="20230407 11:38:31.382"/>
+</for>
+<msg timestamp="20230407 11:38:31.382" level="INFO">${distance_mean_LIST} = [-0.06191000000000002, 0.06191000000000002]</msg>
+<timeout value="1 minute"/>
+<status status="PASS" starttime="20230407 11:38:31.366" endtime="20230407 11:38:31.382"/>
+</kw>
+<for flavor="IN RANGE">
+<var>${i}</var>
+<value>${iterations}</value>
+<iter>
+<var name="${i}">0</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${mysubSQ}</var>
+<arg>${distance_mean_LIST}[${i}]**2</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20230407 11:38:31.382" level="INFO">${mysubSQ} = -0.0038328481000000024</msg>
+<status status="PASS" starttime="20230407 11:38:31.382" endtime="20230407 11:38:31.382"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${mysum}</var>
+<arg>${mysum} + ${mysubSQ}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20230407 11:38:31.383" level="INFO">${mysum} = -0.0038328481000000024</msg>
+<status status="PASS" starttime="20230407 11:38:31.383" endtime="20230407 11:38:31.383"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${mysum}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230407 11:38:31.383" level="INFO">-0.0038328481000000024</msg>
+<status status="PASS" starttime="20230407 11:38:31.383" endtime="20230407 11:38:31.383"/>
+</kw>
+<status status="PASS" starttime="20230407 11:38:31.382" endtime="20230407 11:38:31.383"/>
+</iter>
+<iter>
+<var name="${i}">1</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${mysubSQ}</var>
+<arg>${distance_mean_LIST}[${i}]**2</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20230407 11:38:31.383" level="INFO">${mysubSQ} = 0.0038328481000000024</msg>
+<status status="PASS" starttime="20230407 11:38:31.383" endtime="20230407 11:38:31.383"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${mysum}</var>
+<arg>${mysum} + ${mysubSQ}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20230407 11:38:31.384" level="INFO">${mysum} = 0.0</msg>
+<status status="PASS" starttime="20230407 11:38:31.383" endtime="20230407 11:38:31.384"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${mysum}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230407 11:38:31.384" level="INFO">0.0</msg>
+<status status="PASS" starttime="20230407 11:38:31.384" endtime="20230407 11:38:31.384"/>
+</kw>
+<status status="PASS" starttime="20230407 11:38:31.383" endtime="20230407 11:38:31.384"/>
+</iter>
+<status status="PASS" starttime="20230407 11:38:31.382" endtime="20230407 11:38:31.384"/>
+</for>
+<kw name="Evaluate" library="BuiltIn">
+<var>${MEAN_SQ_VAL}</var>
+<arg>${mysum}/${iterations}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20230407 11:38:31.384" level="INFO">${MEAN_SQ_VAL} = 0.0</msg>
+<status status="PASS" starttime="20230407 11:38:31.384" endtime="20230407 11:38:31.384"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${STANDARD_DEVIATION_TIME}</var>
+<arg>${MEAN_SQ_VAL}**0.5</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20230407 11:38:31.385" level="INFO">${STANDARD_DEVIATION_TIME} = 0.0</msg>
+<status status="PASS" starttime="20230407 11:38:31.384" endtime="20230407 11:38:31.385"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${STANDARD_DEVIATION_TIME}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230407 11:38:31.385" level="INFO">0.0</msg>
+<status status="PASS" starttime="20230407 11:38:31.385" endtime="20230407 11:38:31.385"/>
+</kw>
+<status status="PASS" starttime="20230407 11:38:31.366" endtime="20230407 11:38:31.385"/>
+</kw>
+<status status="PASS" starttime="20230407 11:38:31.314" endtime="20230407 11:38:31.385"/>
+</test>
+<status status="PASS" starttime="20230407 11:38:16.462" endtime="20230407 11:38:31.386"/>
+</suite>
+<statistics>
+<total>
+<stat pass="5" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="5" fail="0" skip="0" id="s1" name="xmRobotTest7">xmRobotTest7</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

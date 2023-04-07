@@ -1,0 +1,167 @@
+<html><head>
+
+
+
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+                <meta name="robots" content="NONE,NOARCHIVE">
+
+
+            <title>Django REST framework</title>
+
+
+
+    <link rel="stylesheet" href="/static/css/bootstrap.css" type="text/css">
+
+                <link rel="stylesheet" type="text/css" href="/static/rest_framework/css/prettify.css">
+                <link rel="stylesheet" type="text/css" href="/static/rest_framework/css/default.css">
+
+
+
+    <script charset="utf-8" src="https://platform.twitter.com/js/button.e7f9415a2e000feaab02c86dd5802747.js"></script></head>
+
+
+    <body class="">
+
+        <div class="wrapper">
+
+
+                <div class="navbar navbar-static-top ">
+                    <div class="container">
+                        <span>
+
+<div class="navbar-header">
+<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+<span class="sr-only"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</button>
+<div class="navbar-brand" href="#"><iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" class="twitter-share-button twitter-share-button-rendered twitter-tweet-button" style="position: static; visibility: visible; width: 73px; height: 20px;" title="Twitter Tweet Button" src="https://platform.twitter.com/widgets/tweet_button.2b2d73daf636805223fb11d48f3e94f7.en.html#dnt=false&amp;id=twitter-widget-0&amp;lang=en&amp;original_referer=https%3A%2F%2Fswapi.dev%2Fapi%2F&amp;related=juriy&amp;size=m&amp;text=SWAPI%20-%20the%20Star%20Wars%20API%20&amp;time=1680529738877&amp;type=share&amp;url=https%3A%2F%2Fswapi.co&amp;via=juriy" data-url="https://swapi.co"></iframe>
+    <script id="twitter-wjs" src="https://platform.twitter.com/widgets.js"></script><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></div>
+</div>
+<div class="collapse navbar-collapse">
+<ul class="nav navbar-nav navbar-right">
+    <li><a href="/">Home</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="/documentation">Documentation</a></li>
+</ul>
+</div><!-- /.navbar-collapse -->
+                        </span>
+                        <ul class="nav navbar-nav pull-right">
+
+
+
+
+
+                        </ul>
+                    </div>
+                </div>
+
+
+            <div class="container">
+
+                <ul class="breadcrumb">
+
+
+                            <li class="active"><a href="/api/">Api Root</a></li>
+
+
+                </ul>
+
+
+            <!-- Content -->
+            <div id="content">
+
+
+                    <form id="get-form" class="pull-right">
+                        <fieldset>
+                            <div class="btn-group format-selection">
+                                <a class="btn btn-primary js-tooltip" href="/api/" rel="nofollow" title="" data-original-title="Make a GET request on the Api Root resource">GET</a>
+
+                                <button class="btn btn-primary dropdown-toggle js-tooltip" data-toggle="dropdown" title="" data-original-title="Specify a format for the GET request">
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+
+                                        <li>
+                                            <a class="js-tooltip format-option" href="/api/?format=json" rel="nofollow" title="" data-original-title="Make a GET request on the Api Root resource with the format set to `json`">
+                                                json
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a class="js-tooltip format-option" href="/api/?format=api" rel="nofollow" title="" data-original-title="Make a GET request on the Api Root resource with the format set to `api`">
+                                                api
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a class="js-tooltip format-option" href="/api/?format=wookiee" rel="nofollow" title="" data-original-title="Make a GET request on the Api Root resource with the format set to `wookiee`">
+                                                wookiee
+                                            </a>
+                                        </li>
+
+                                </ul>
+                            </div>
+                        </fieldset>
+                    </form>
+
+
+
+                    <form class="button-form" action="/api/" method="POST">
+                        <input type="hidden" name="csrfmiddlewaretoken" value="ZIC2WgfgXcxq5q7DpF1Ps7B5zE5Xpu3L">
+                        <input type="hidden" name="_method" value="OPTIONS">
+                        <button class="btn btn-primary js-tooltip" title="" data-original-title="Make an OPTIONS request on the Api Root resource">OPTIONS</button>
+                    </form>
+
+
+
+
+                <div class="content-main">
+                    <div class="page-header">
+                        <h1>Api Root</h1>
+                    </div>
+
+
+
+                    <div class="request-info" style="clear: both">
+                        <pre class="prettyprint"><b><span class="pln">GET</span></b><span class="pln"> </span><span class="pun">/</span><span class="pln">api</span><span class="pun">/</span></pre>
+                    </div>
+                    <div class="response-info">
+                        <pre class="prettyprint"><span class="meta nocode"><b>HTTP 200 OK</b>
+<b>Content-Type:</b> <span class="lit">application/json</span>
+<b>Vary:</b> <span class="lit">Accept</span>
+<b>Allow:</b> <span class="lit">GET, HEAD, OPTIONS</span>
+
+</span><span class="pun">{</span><span class="pln">
+    </span><span class="str">"people"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"</span><a href="https://swapi.dev/api/people/" rel="nofollow"><span class="str">https://swapi.dev/api/people/</span></a><span class="str">"</span><span class="pun">,</span><span class="pln">
+    </span><span class="str">"planets"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"</span><a href="https://swapi.dev/api/planets/" rel="nofollow"><span class="str">https://swapi.dev/api/planets/</span></a><span class="str">"</span><span class="pun">,</span><span class="pln">
+    </span><span class="str">"films"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"</span><a href="https://swapi.dev/api/films/" rel="nofollow"><span class="str">https://swapi.dev/api/films/</span></a><span class="str">"</span><span class="pun">,</span><span class="pln">
+    </span><span class="str">"species"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"</span><a href="https://swapi.dev/api/species/" rel="nofollow"><span class="str">https://swapi.dev/api/species/</span></a><span class="str">"</span><span class="pun">,</span><span class="pln">
+    </span><span class="str">"vehicles"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"</span><a href="https://swapi.dev/api/vehicles/" rel="nofollow"><span class="str">https://swapi.dev/api/vehicles/</span></a><span class="str">"</span><span class="pun">,</span><span class="pln">
+    </span><span class="str">"starships"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"</span><a href="https://swapi.dev/api/starships/" rel="nofollow"><span class="str">https://swapi.dev/api/starships/</span></a><span class="str">"</span><span class="pln">
+</span><span class="pun">}</span></pre>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+            </div>
+            <!-- END Content -->
+            </div><!-- /.container -->
+        </div><!-- ./wrapper -->
+
+
+            <script src="/static/rest_framework/js/jquery-1.8.1-min.js"></script>
+            <script src="/static/rest_framework/js/bootstrap.min.js"></script>
+            <script src="/static/rest_framework/js/prettify-min.js"></script>
+            <script src="/static/rest_framework/js/default.js"></script>
+
+
+
+
+<iframe scrolling="no" frameborder="0" allowtransparency="true" src="https://platform.twitter.com/widgets/widget_iframe.2b2d73daf636805223fb11d48f3e94f7.html?origin=https%3A%2F%2Fswapi.dev" title="Twitter settings iframe" style="display: none;"></iframe><iframe id="rufous-sandbox" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" style="position: absolute; visibility: hidden; display: none; width: 0px; height: 0px; padding: 0px; border: none;" title="Twitter analytics iframe"></iframe></body></html>
