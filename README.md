@@ -3,6 +3,7 @@ A server with flask tested by robot, functional and performance test
 
 
 > xmRobotTestFunctional.robot : test for the first assignment 
+> 
 > xmRobotTestPerformance.robot : test for the performance test
 
 functional.py : runs the flask server
