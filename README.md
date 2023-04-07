@@ -7,6 +7,8 @@ A server with flask tested by robot, functional and performance test
 > xmRobotTestPerformance.robot : test for the performance test
 
 functional.py : runs the flask server
+            ```#time.sleep(random.uniform(0.2, 0.5))```
+            this must be uncommented to run Performance Test 
 
 used the html+css+<script inside html for writing output> from the original site 
 
